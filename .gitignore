@@ -1,0 +1,33 @@
+# .gitignore
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.py~
+
+# Django
+*.log
+db.sqlite3
+
+# Secret key
+*.secret
+
+# IDE files
+.idea/
+.vscode/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
