@@ -18,9 +18,16 @@ class Product(models.Model):
     
 
 class Order(models.Model):
+    STATUS_CHOICES = {
+        'PENDING': 'Pending',
+        'PROCESSED': 'Processed',
+        'SHIPPED': 'Shipped',
+        'DELIVERED': 'Delivered',
+    }
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(validators=[MinValueValidator(limit_value=0)])    
+    quantity = models.IntegerField(validators=[MinValueValidator(limit_value=0)])
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=STATUS_CHOICES['PENDING'])
     
     def __str__(self):
         return f'{self.user} {self.product}'
