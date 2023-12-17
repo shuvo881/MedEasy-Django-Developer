@@ -116,4 +116,14 @@ class OrderViewSetTestCase(BaseTestCase):
         # Refresh the order from the database
         self.order.refresh_from_db()
         self.assertEqual(self.order.quantity, 200)
+    
+    def test_delete_review(self):
+        self.order = Order.objects.create(product= self.product, quantity=20, status=Order.status, user=self.user)
+        response = self.client.delete(f'/products/api/orders/{self.order.id}/')
+        
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Check that the review was deleted from the database
+        with self.assertRaises(Order.DoesNotExist):
+            Order.objects.get(id=self.order.id)
       
