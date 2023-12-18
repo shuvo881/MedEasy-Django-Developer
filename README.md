@@ -28,9 +28,9 @@
 ## Order
 
 ### Review create or list of Order:
-    https://shuvo001.pythonanywhere.com/products/api/order/
+    https://shuvo001.pythonanywhere.com/products/api/orders/
 ### Update or Delete/Get Order
-    https://shuvo001.pythonanywhere.com/products/api/order/2/
+    https://shuvo001.pythonanywhere.com/products/api/orders/2/
 
 
 # Proper Documentation:
