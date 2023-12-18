@@ -9,6 +9,9 @@
 ### User login:
     https://shuvo001.pythonanywhere.com/api/auth/login/
 
+### User logout:
+    https://shuvo001.pythonanywhere.com/api/auth/logout/
+
 ## Product
 ### product create or list of product:
     https://shuvo001.pythonanywhere.com/products/api/products/
