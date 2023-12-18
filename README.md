@@ -1,1 +1,7 @@
-# MedEasy-Django-Developer
+# How to aceess all API's 
+
+
+## User Athentication 
+
+### User Creation:
+    

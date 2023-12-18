@@ -23,12 +23,11 @@ class ProductViewSetTestCase(BaseTestCase):
     
     def setUp(self):
         super().setUp()
-        self.image = SimpleUploadedFile("test_image.jpg", content=b"file_content", content_type="image/jpeg")
+        self.image = 'product_images/test_image.jpg'
         
     
     def test_product_list(self):
         response = self.client.get('/products/api/products/')
-        #print(response)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_create_product(self):
@@ -39,9 +38,31 @@ class ProductViewSetTestCase(BaseTestCase):
             'image': self.image,
             'is_sell': True,
         }
-        #print(data['image'])
         response = self.client.post('/products/api/products/', data=data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
+    def test_update_product(self):
+        self.product = Product.objects.create(name='Test', description='test des', price=10, image=self.image, is_sell=False)
+        update_data = {
+            "name": "laptop",
+            "description": "dsjsjsk",
+            "price": 200,
+            "image": self.image,
+            "is_sell": False
+        }
+        responce = self.client.patch(f'/products/api/products/{self.product.id}/', data=update_data)
+        self.assertEqual(responce.status_code, status.HTTP_200_OK)
+    
+    def test_delete_review(self):
+        self.product = Product.objects.create(name='Test', description='test des', price=10, image=self.image, is_sell=False)
+        response = self.client.delete(f'/products/api/products/{self.product.id}/')
+        
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Check that the review was deleted from the database
+        with self.assertRaises(Product.DoesNotExist):
+            Product.objects.get(id=self.product.id)
+        
 
 class ReviewViewSetTestCase(BaseTestCase):
     def setUp(self):
